@@ -6,20 +6,13 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^5.0.7"
+    "electron": "^5.0.7",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2"
   },
-  "dependencies": {
-    "eslint": "^6.1.0"
-  }
+  "dependencies": {}
 }
