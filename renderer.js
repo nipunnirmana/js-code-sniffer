@@ -6,8 +6,10 @@ var cp = require("child_process");
 var eslint = require("eslint");
 const buttonCreated = document.getElementById("eslint");
 buttonCreated.addEventListener("click", function(event) {
+  buttonCreated.disabled = true;
   document.querySelector(".log").innerHTML = "Running Eslint ...";
-  cp.exec("eslint sample.js", function(err, stdout, stderr) {
+  cp.exec("eslint . -f json", function(err, stdout, stderr) {
     document.querySelector(".log").innerHTML = "<pre>" + stdout + "</pre>";
+    buttonCreated.disabled = false;
   });
 });
