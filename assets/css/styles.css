@@ -1,0 +1,9 @@
+.error-wrapper {
+  padding: 15px;
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  font-family: "Roboto-thin";
+}

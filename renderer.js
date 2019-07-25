@@ -15,12 +15,21 @@ buttonCreated.addEventListener("click", function(event) {
     JSON.parse(stdout).forEach((val, key) => {
       let eCount = val.errorCount;
       let wCount = val.warningCount;
-      let filePath = `<div> ${val.filePath} </div>`;
+      let filePath = `<div class="file-path"> ${val.filePath} </div>`;
+      let errors = "";
+
+      val.messages.forEach((val, key) => {
+        errors += `<div class="error"> :${val.line} ${val.message} </div>`;
+      });
+
       let errorSummary = `${eCount +
         wCount} problems (${eCount} errors, ${wCount} warning)`;
 
-      document.querySelector(".log").innerHTML +=
-        "<pre>" + filePath + errorSummary + "</pre>";
+      document.querySelector(
+        ".log"
+      ).innerHTML += `<pre><div class='error-wrapper' > ${filePath +
+        errors +
+        errorSummary}  </div></pre>`;
     });
   });
 });

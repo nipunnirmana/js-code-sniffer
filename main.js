@@ -16,11 +16,12 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true
-    }
+    },
+    backgroundColor: "#2e2c29"
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("pages/splash.html");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
