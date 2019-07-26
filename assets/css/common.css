@@ -1,6 +1,7 @@
 :root {
   --primary-color: #202020;
   --primary-text-color: #ffffff;
+  --logo-color: #ffff00;
 }
 
 @font-face {
@@ -16,4 +17,47 @@
 @font-face {
   font-family: "Roboto";
   src: url("../fonts/Roboto-Regular.ttf");
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  font-family: "Roboto-thin";
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/**Animations**/
+
+@keyframes splash-animation {
+  0% {
+    font-size: 0;
+  }
+  100% {
+    font-size: inherit;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
 }
