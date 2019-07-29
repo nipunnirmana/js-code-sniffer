@@ -6,8 +6,6 @@
   "scripts": {
     "start": "electron ."
   },
-  "author": "GitHub",
-  "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^5.0.7",
     "eslint": "^5.16.0",
