@@ -8,9 +8,27 @@ const formatPath = path =>
     .replace(/[)]/g, "\\)")
     .replace(/ /g, "\\ ");
 
-const showError = error => {
+const formatErrorType = severity => (severity === 2 ? "error" : "warning");
+
+const showError = errorData => {
   document.querySelector(".results-error-summary").textContent =
-    error.errorSummary;
+    errorData.errorSummary;
+
+  document.querySelector(".error-list").innerHTML = "";
+
+  const unescapedParsedErrorList = JSON.parse(unescape(errorData.errors));
+  unescapedParsedErrorList.forEach((val, key) => {
+    document.querySelector(".error-list").innerHTML += `<li>
+    <div class="error-line error-attribute">LINE</div>
+    <div class="error-description">${val.line}:${val.endLine}</div>
+    <div class="error-rule error-attribute">RULE</div>
+    <div class="error-description">${val.nodeType} (${val.ruleId})</div>
+    <div class="error-type-${formatErrorType(
+      val.severity
+    )} error-attribute">${formatErrorType(val.severity)}</div>
+    <div class="error-description">${val.message}</div>
+    </li>`;
+  });
 };
 
 document.ondragover = document.ondrop = ev => {
@@ -45,25 +63,24 @@ document.querySelector(".start-screen-wrapper").addEventListener("drop", e => {
           let errors = [];
 
           val.messages.forEach((val, key) => {
-            errors.push(val.line, escape(val.message));
+            errors.push({ line: val.line, msg: escape(val.message), s: 1 });
           });
 
           let errorSummary = `${eCount +
             wCount} problems (${eCount} errors, ${wCount} warnings)`;
 
           document.querySelector(
-            ".results"
-          ).innerHTML += `<pre><div class='error-wrapper' > ${filePath +
-            errors}  </div></pre>`;
-
-          document.querySelector(
             ".side-panel-file-list"
-          ).innerHTML += `<li onclick='showError(${JSON.stringify({
-            errorSummary,
-            filePath,
-            errors: JSON.stringify(errors)
-          })})'>${filePath}</li>`;
+          ).innerHTML += `<li title="${filePath}" onclick='showError(${JSON.stringify(
+            {
+              errorSummary,
+              filePath,
+              errors: escape(JSON.stringify(val.messages))
+            }
+          )})'>${filePath.split("/").pop()}</li>`;
         });
+
+        document.querySelector(".side-panel-file-list li").click();
       }
     );
   }

@@ -36,3 +36,40 @@
   background: blueviolet;
   height: 200px;
 }
+
+.side-panel {
+  width: 30%;
+}
+
+.results-inner {
+  display: inline-block;
+  width: 70%;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+ul.side-panel-file-list li {
+  background: rebeccapurple;
+  padding: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.results-title {
+  font-size: 72px;
+  font-family: "Roboto-thin";
+}
+
+.results-error-summary {
+  font-size: 28px;
+  font-family: "Roboto-thin";
+}
+
+.results {
+  display: flex;
+}
