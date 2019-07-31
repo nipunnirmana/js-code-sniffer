@@ -10,23 +10,37 @@ const formatPath = path =>
 
 const formatErrorType = severity => (severity === 2 ? "error" : "warning");
 
-const showError = errorData => {
+const showError = (errorData, element) => {
   document.querySelector(".results-error-summary").textContent =
     errorData.errorSummary;
 
   document.querySelector(".error-list").innerHTML = "";
 
+  if (document.querySelector("ul.side-panel-file-list li.active")) {
+    document
+      .querySelector("ul.side-panel-file-list li.active")
+      .classList.remove("active");
+  }
+
+  element.className += " active";
+
   const unescapedParsedErrorList = JSON.parse(unescape(errorData.errors));
   unescapedParsedErrorList.forEach((val, key) => {
     document.querySelector(".error-list").innerHTML += `<li>
+    <div class="error-row">
     <div class="error-line error-attribute">LINE</div>
-    <div class="error-description">${val.line}:${val.endLine}</div>
+    <div class="error-description">${val.line}:${val.endLine || val.line}</div>
+    </div>
+    <div class="error-row">
     <div class="error-rule error-attribute">RULE</div>
     <div class="error-description">${val.nodeType} (${val.ruleId})</div>
+    </div>
+    <div class="error-row">
     <div class="error-type-${formatErrorType(
       val.severity
     )} error-attribute">${formatErrorType(val.severity)}</div>
     <div class="error-description">${val.message}</div>
+    </div>
     </li>`;
   });
 };
@@ -77,7 +91,7 @@ document.querySelector(".start-screen-wrapper").addEventListener("drop", e => {
               filePath,
               errors: escape(JSON.stringify(val.messages))
             }
-          )})'>${filePath.split("/").pop()}</li>`;
+          )},this)'>${filePath.split("/").pop()}</li>`;
         });
 
         document.querySelector(".side-panel-file-list li").click();

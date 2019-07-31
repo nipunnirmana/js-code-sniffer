@@ -38,12 +38,16 @@
 }
 
 .side-panel {
-  width: 30%;
+  min-width: 20%;
+  background-color: #424242;
+  min-height: 100vh;
 }
 
 .results-inner {
   display: inline-block;
-  width: 70%;
+  width: 80%;
+  padding: 30px;
+  line-height: 65px;
 }
 
 ul,
@@ -54,10 +58,20 @@ li {
 }
 
 ul.side-panel-file-list li {
-  background: rebeccapurple;
   padding: 20px;
   margin-bottom: 10px;
   cursor: pointer;
+}
+
+ul.side-panel-file-list li.active {
+  background: var(--primary-color);
+}
+
+.side-panel-file-list {
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  width: 20%;
 }
 
 .results-title {
@@ -72,4 +86,59 @@ ul.side-panel-file-list li {
 
 .results {
   display: flex;
+}
+
+.error-list {
+  line-height: 21px;
+}
+
+.error-list li {
+  border-top: 1px #4d4d4d solid;
+  padding: 10px 0;
+}
+
+.error-row {
+  display: flex;
+}
+
+.error-attribute {
+  width: 80px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  font-family: "Roboto";
+  border-radius: 14px;
+  font-weight: bold;
+  margin-bottom: auto;
+}
+
+.error-description {
+  width: 80%;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  text-align: left;
+  font-size: 14px;
+  font-family: "Roboto";
+}
+
+.error-attribute.error-line {
+  background-color: var(--info-color);
+}
+
+.error-rule {
+  background-color: var(--pass-color);
+}
+
+.error-type-error {
+  background-color: var(--error-color);
+}
+
+.error-type-warning {
+  background-color: var(--warning-color);
+}
+
+.side-panel-file-list li:first-child {
+  margin-top: 160px;
 }
