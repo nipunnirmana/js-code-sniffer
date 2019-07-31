@@ -45,8 +45,6 @@
 
 .results-inner {
   display: inline-block;
-  width: 80%;
-  padding: 30px;
   line-height: 65px;
 }
 
@@ -64,7 +62,7 @@ ul.side-panel-file-list li {
 }
 
 ul.side-panel-file-list li.active {
-  background: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .side-panel-file-list {
@@ -90,6 +88,9 @@ ul.side-panel-file-list li.active {
 
 .error-list {
   line-height: 21px;
+  margin-top: 160px;
+  width: 100%;
+  padding: 30px;
 }
 
 .error-list li {
@@ -141,4 +142,10 @@ ul.side-panel-file-list li.active {
 
 .side-panel-file-list li:first-child {
   margin-top: 160px;
+}
+
+.results-header {
+  position: fixed;
+  background-color: var(--primary-color);
+  padding: 30px;
 }

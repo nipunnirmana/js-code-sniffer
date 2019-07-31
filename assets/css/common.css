@@ -65,3 +65,15 @@ body {
     opacity: 0;
   }
 }
+
+*::-webkit-scrollbar {
+  background: #0e0e0e;
+  width: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #717171;
+}
+
+* {
+  scroll-behavior: smooth;
+}
