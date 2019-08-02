@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&display=swap");
+
+html,
+body,
+#root {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  font-family: $primary-font;
+  color: $primary-text-color;
+  font-size: $font-size-md;
+  font-weight: $font-weight-thin;
+  background-color: $primary-color;
+}
