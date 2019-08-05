@@ -4,7 +4,7 @@ import App from "./App";
 import Start from "./Start";
 import Results from "./Results";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 const routing = (
   <Router>

@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import cp from "child_process";
 import app from "electron";
 
-import "./start.scss";
+import "./Start.scss";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function Splash(props) {
+  const [primaryText, setPrimaryText] = useState("Drag and drop to Start");
+  const [secondaryText, setSecondaryText] = useState(
+    "Drag and drop the project root folder"
+  );
+
   useEffect(() => {
     document.ondragover = document.ondrop = ev => {
       ev.preventDefault();
@@ -25,6 +30,9 @@ function Splash(props) {
 
   const handleOnDrop = e => {
     if (e.dataTransfer.files) {
+      setPrimaryText("Checking ...");
+      setSecondaryText("");
+
       const file = e.dataTransfer.files;
       let fileList = [];
 
@@ -37,10 +45,16 @@ function Splash(props) {
       )}/.eslintrc.json`;
 
       cp.exec(
-        `eslint ${fileList.join(" ")} --c ${configPath} -f json`,
+        `./node_modules/.bin/eslint ${fileList.join(
+          " "
+        )} --c ${configPath} -f json  --max-warnings 10`,
         (err, stdout, stderr) => {
+          debugger;
           const parsedErrorData = JSON.parse(stdout);
-          props.history.push("/results", { parsedErrorData });
+          props.history.push({
+            pathname: "/results",
+            state: { parsedErrorData }
+          });
         }
       );
     }
@@ -50,10 +64,10 @@ function Splash(props) {
     <Container className="start-wrapper" onDrop={handleOnDrop}>
       <Row>
         <Col lg={12} className="start-primary-text">
-          Drag and drop to Start
+          {primaryText}
         </Col>
         <Col lg={12} className="start-secondary-text">
-          Drag and drop the project root folder
+          {secondaryText}
         </Col>
       </Row>
     </Container>
