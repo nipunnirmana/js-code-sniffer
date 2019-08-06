@@ -14,8 +14,22 @@ body,
   color: $primary-text-color;
   font-size: $font-size-md;
   font-weight: $font-weight-thin;
+  padding: 3%;
 }
 
 .row {
   flex-wrap: unset;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+summary:before {
+  content: "+";
+  margin-right: 11px;
+  width: 10px;
+  display: inline-block;
+}
+details[open] summary:before {
+  content: "-";
 }

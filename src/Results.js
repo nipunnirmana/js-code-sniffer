@@ -49,18 +49,15 @@ function Results(props) {
   });
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col lg={3} className="file-list">
+        <Col xs={3} className="file-list">
           <Row>
             <Col lg={12}>{fileList()}</Col>
           </Row>
         </Col>
-        <Col lg={9} className="results">
+        <Col xs={9} className="results">
           <Row>
-            <Col lg={12} className="results-title">
-              Results
-            </Col>
             <Col lg={12} className="results-summary">
               {errorSummary}
             </Col>

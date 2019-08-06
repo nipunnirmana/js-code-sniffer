@@ -31,7 +31,7 @@ function Splash(props) {
   const handleOnDrop = e => {
     if (e.dataTransfer.files) {
       setPrimaryText("Checking ...");
-      setSecondaryText("");
+      setSecondaryText("Please wait this may take sometime...");
 
       const file = e.dataTransfer.files;
       let fileList = [];
@@ -44,19 +44,39 @@ function Splash(props) {
         app.remote.process.env.PWD
       )}/.eslintrc.json`;
 
-      cp.exec(
-        `./node_modules/.bin/eslint ${fileList.join(
-          " "
-        )} --c ${configPath} -f json  --max-warnings 10`,
-        (err, stdout, stderr) => {
-          debugger;
-          const parsedErrorData = JSON.parse(stdout);
-          props.history.push({
-            pathname: "/results",
-            state: { parsedErrorData }
-          });
+      const eslintFlags = [
+        `${fileList.join(" ")} --c  ${configPath}`,
+        `--max-warnings 2`,
+        `-f json`,
+        `--ignore-pattern '**/requirejs-config.js'`
+      ];
+
+      cp.spawn(`eslint ${eslintFlags.join(" ")}`, (err, stdout, stderr) => {
+        debugger;
+        if (stderr.length) {
+          if (stderr.indexOf("No files matching the pattern") > 0) {
+            setPrimaryText("0 .js files");
+            setSecondaryText("Try dragging another folder or file");
+          } else {
+            setPrimaryText(stderr);
+            setSecondaryText("");
+          }
+
+          setSecondaryText("");
+        } else {
+          try {
+            const parsedErrorData = JSON.parse(stdout);
+            props.history.push({
+              pathname: "/results",
+              state: { parsedErrorData }
+            });
+          } catch (error) {
+            console.error("Error:Parsed JSON", error);
+            setPrimaryText(error.toString());
+            setSecondaryText("Please try again...");
+          }
         }
-      );
+      });
     }
   };
 

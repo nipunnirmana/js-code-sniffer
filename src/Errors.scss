@@ -1,22 +1,10 @@
-.results {
-  .error-list li {
-    list-style: none;
-    font-size: 20px;
-  }
+@import "./assets/styles/variables";
+@import "./assets/styles/common";
+.error-source {
+  font-size: 16px;
+}
 
-  .results-title {
-    font-size: 68px;
-  }
-
-  .results-summary {
-    font-size: 22px;
-  }
-
-  .results-file-path {
-    font-size: 34px;
-  }
-
-  .error-source {
-    font-size: 16px;
-  }
+.error-msg {
+  margin: 10px 0;
+  border-top: 1px solid #2f2f2f;
 }

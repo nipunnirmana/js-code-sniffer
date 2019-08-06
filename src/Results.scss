@@ -1,5 +1,27 @@
+@import "./assets/styles/variables";
+@import "./assets/styles/common";
+.results {
+  .error-list li {
+    list-style: none;
+    font-size: $font-size-sm;
+  }
+
+  .results-title {
+    font-size: $font-size-md;
+  }
+
+  .results-summary {
+    font-size: $font-size-md;
+  }
+
+  .results-file-path {
+    font-size: $font-size-sm;
+  }
+}
+
 .file-list li {
   list-style: none;
-  font-size: 24px;
+  font-size: $font-size-sm;
+  text-align: right;
   cursor: pointer;
 }
