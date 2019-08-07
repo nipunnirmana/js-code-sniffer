@@ -15,6 +15,10 @@ body,
   font-size: $font-size-md;
   font-weight: $font-weight-thin;
   padding: 3%;
+
+  .container-fluid {
+    margin-bottom: 50px;
+  }
 }
 
 .row {
@@ -32,4 +36,17 @@ summary:before {
 }
 details[open] summary:before {
   content: "-";
+}
+
+*::-webkit-scrollbar {
+  background: #0e0e0e;
+  width: 4px;
+  height: 4px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #717171;
+}
+
+* {
+  scroll-behavior: smooth;
 }

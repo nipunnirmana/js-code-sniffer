@@ -7,7 +7,6 @@ import "./Errors.scss";
 export default function(props) {
   const { source } = props;
   return props.errors.map((error, key) => {
-    debugger;
     const { line, message, ruleId, column, endColumn, severity } = error;
     const currentErrorSource = source.split("\n")[line - 1];
 
@@ -15,12 +14,12 @@ export default function(props) {
       <li key={key} className={severity == 2 ? "error-msg" : "warning-msg"}>
         <Row>
           <Col lg={12}>
-            <span className="error-summary">{`:${line} ${message}`}</span>
+            <span className="error-summary">{`${message}`}</span>
           </Col>
           <Col lg={12} className="error-source">
             <details>
-              <summary>Click to view Source</summary>
-              {currentErrorSource}
+              <summary>Toggle view Source</summary>
+              <code> {`:${line} ${currentErrorSource}`}</code>
             </details>
           </Col>
         </Row>

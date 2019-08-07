@@ -1,7 +1,10 @@
 @import "./assets/styles/variables";
 @import "./assets/styles/common";
 .error-source {
-  font-size: 16px;
+  font-size: $font-size-xs;
+  code {
+    margin-left: 20px;
+  }
 }
 
 .error-msg {

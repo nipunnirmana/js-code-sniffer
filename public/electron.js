@@ -15,8 +15,11 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true
     },
-    backgroundColor: "#2e2c29"
+    backgroundColor: "#202020"
   });
+
+  mainWindow.setMenu(null);
+
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"

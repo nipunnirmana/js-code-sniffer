@@ -7,8 +7,9 @@ import "./Start.scss";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
-function Splash(props) {
+function Start(props) {
   const [primaryText, setPrimaryText] = useState("Drag and drop to Start");
   const [secondaryText, setSecondaryText] = useState(
     "Drag and drop the project root folder"
@@ -28,6 +29,10 @@ function Splash(props) {
 
   const formatErrorType = severity => (severity === 2 ? "error" : "warning");
 
+  const reset = () => {
+    props.history.go("/start");
+  };
+
   const handleOnDrop = e => {
     if (e.dataTransfer.files) {
       setPrimaryText("Checking ...");
@@ -45,38 +50,47 @@ function Splash(props) {
       )}/.eslintrc.json`;
 
       const eslintFlags = [
-        `${fileList.join(" ")} --c  ${configPath}`,
-        `--max-warnings 2`,
+        `${fileList.join(" ")} --c ${configPath}`,
+        `--no-eslintrc`,
         `-f json`,
+        `--ignore-pattern  '**/node_modules'`,
+        `--ignore-pattern  '**/plugins/'`,
+        `--ignore-pattern '**/*.eslintrc'`,
+        `--ignore-pattern '**/*.min.js'`,
         `--ignore-pattern '**/requirejs-config.js'`
       ];
 
-      cp.spawn(`eslint ${eslintFlags.join(" ")}`, (err, stdout, stderr) => {
-        debugger;
-        if (stderr.length) {
-          if (stderr.indexOf("No files matching the pattern") > 0) {
-            setPrimaryText("0 .js files");
-            setSecondaryText("Try dragging another folder or file");
+      cp.exec(
+        `eslint ${eslintFlags.join(" ")}`,
+        { maxBuffer: Infinity },
+        (err, stdout, stderr) => {
+          if (stderr.length) {
+            if (stderr.indexOf("No files matching the pattern") > 0) {
+              setPrimaryText("No Errors Found");
+              setSecondaryText(
+                <Button variant="outline-success" size="sm" onClick={reset}>
+                  START OVER
+                </Button>
+              );
+            } else {
+              setPrimaryText(stderr);
+              setSecondaryText("");
+            }
           } else {
-            setPrimaryText(stderr);
-            setSecondaryText("");
-          }
-
-          setSecondaryText("");
-        } else {
-          try {
-            const parsedErrorData = JSON.parse(stdout);
-            props.history.push({
-              pathname: "/results",
-              state: { parsedErrorData }
-            });
-          } catch (error) {
-            console.error("Error:Parsed JSON", error);
-            setPrimaryText(error.toString());
-            setSecondaryText("Please try again...");
+            try {
+              const parsedErrorData = JSON.parse(stdout);
+              props.history.push({
+                pathname: "/results",
+                state: { parsedErrorData }
+              });
+            } catch (error) {
+              console.error("Error:Parsed JSON", error);
+              setPrimaryText(error.toString());
+              setSecondaryText("Please try again...");
+            }
           }
         }
-      });
+      );
     }
   };
 
@@ -94,4 +108,4 @@ function Splash(props) {
   );
 }
 
-export default Splash;
+export default Start;

@@ -17,11 +17,36 @@
   .results-file-path {
     font-size: $font-size-sm;
   }
+
+  .results-ready {
+    display: none;
+    line-height: 90vh;
+    text-align: center;
+    &.active {
+      display: block;
+    }
+  }
 }
 
-.file-list li {
-  list-style: none;
-  font-size: $font-size-sm;
-  text-align: right;
-  cursor: pointer;
+.file-list {
+  height: 85vh;
+  overflow: auto;
+  li {
+    list-style: none;
+    font-size: $font-size-sm;
+    text-align: right;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 5px;
+    &.active {
+      color: $primary-color;
+      font-weight: $font-weight-light;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(204, 190, 59, 1) 88%,
+        rgba(204, 190, 59, 1) 100%
+      );
+    }
+  }
 }
