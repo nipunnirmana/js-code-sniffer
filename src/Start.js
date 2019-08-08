@@ -30,7 +30,7 @@ function Start(props) {
   const formatErrorType = severity => (severity === 2 ? "error" : "warning");
 
   const reset = () => {
-    props.history.go("/start");
+    app.remote.getCurrentWebContents().reload();
   };
 
   const handleOnDrop = e => {
@@ -52,6 +52,7 @@ function Start(props) {
       const eslintFlags = [
         `${fileList.join(" ")} --c ${configPath}`,
         `--no-eslintrc`,
+        `--quiet`,
         `-f json`,
         `--ignore-pattern  '**/node_modules'`,
         `--ignore-pattern  '**/plugins/'`,
@@ -79,10 +80,19 @@ function Start(props) {
           } else {
             try {
               const parsedErrorData = JSON.parse(stdout);
-              props.history.push({
-                pathname: "/results",
-                state: { parsedErrorData }
-              });
+              if (parsedErrorData.length) {
+                props.history.push({
+                  pathname: "/results",
+                  state: { parsedErrorData }
+                });
+              } else {
+                setPrimaryText("No Errors Found");
+                setSecondaryText(
+                  <Button variant="outline-success" size="sm" onClick={reset}>
+                    START OVER
+                  </Button>
+                );
+              }
             } catch (error) {
               console.error("Error:Parsed JSON", error);
               setPrimaryText(error.toString());

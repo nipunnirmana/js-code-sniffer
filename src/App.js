@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import "./App.scss";
+
 function Splash(props) {
   useEffect(() => {
     setTimeout(() => {
@@ -12,7 +14,7 @@ function Splash(props) {
   });
 
   return (
-    <Container>
+    <Container className="app-wrapper">
       <Row>
         <Col lg={12}>JS CODE SNIFFER</Col>
       </Row>

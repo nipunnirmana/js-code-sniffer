@@ -10,15 +10,16 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
+    width: "100%",
+    height: "100%",
     webPreferences: {
       nodeIntegration: true
     },
     backgroundColor: "#202020"
   });
 
-  mainWindow.setMenu(null);
+  mainWindow.setMenuBarVisibility(false);
+  mainWindow.maximize();
 
   mainWindow.loadURL(
     isDev
@@ -28,7 +29,7 @@ function createWindow() {
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
   }
   mainWindow.on("closed", () => (mainWindow = null));
 }

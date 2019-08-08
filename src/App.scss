@@ -1,0 +1,14 @@
+@import "./assets/styles/variables";
+@import "./assets/styles/common";
+
+.app-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.start-secondary-text {
+  font-size: $font-size-sm;
+}

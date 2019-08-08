@@ -74,7 +74,7 @@ function Results(props) {
     <Container fluid>
       <Row>
         <Col xs={3} className="file-list">
-          <Row>
+          <Row className="file-list-row">
             <Col lg={12} className="text-right">
               <Row>
                 <Col lg={12}>
