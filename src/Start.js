@@ -19,23 +19,6 @@ function Start(props) {
 
   const [path, setPath] = useState("");
 
-  const getPath = (primaryTextData, secondaryTextData) => {
-    return (
-      <Container className="start-wrapper" onDrop={handleOnDrop} fluid>
-        <Col lg={12}>
-          <Row>
-            <Col lg={12} className="start-primary-text">
-              {primaryTextData}
-            </Col>
-            <Col lg={12} className="start-secondary-text">
-              {secondaryTextData}
-            </Col>
-          </Row>
-        </Col>
-      </Container>
-    );
-  };
-
   const handleOnDrop = e => {
     if (e.dataTransfer.files) {
       setPrimaryText("Checking ...");
@@ -114,6 +97,23 @@ function Start(props) {
         }
       );
     }
+  };
+
+  const getPath = (primaryTextData, secondaryTextData) => {
+    return (
+      <Container className="start-wrapper" onDrop={handleOnDrop} fluid>
+        <Col lg={12}>
+          <Row>
+            <Col lg={12} className="start-primary-text">
+              {primaryTextData}
+            </Col>
+            <Col lg={12} className="start-secondary-text">
+              {secondaryTextData}
+            </Col>
+          </Row>
+        </Col>
+      </Container>
+    );
   };
 
   useEffect(() => {
