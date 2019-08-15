@@ -60,6 +60,7 @@ function Start(props) {
         `--ignore-pattern  '**/plugins/'`,
         `--ignore-pattern '**/*.eslintrc'`,
         `--ignore-pattern '**/*.config.js'`,
+        `--ignore-pattern '**/*.chunk.js'`,
         `--ignore-pattern '**/*.babel.js'`,
         `--ignore-pattern '**/*.min.js'`,
         `--ignore-pattern '**/requirejs-config.js'`

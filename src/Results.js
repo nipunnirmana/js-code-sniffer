@@ -63,7 +63,13 @@ function Results(props) {
                   </Col>
 
                   <Col lg={12}>
-                    <Button variant="outline-danger" size="lg">
+                    <Button
+                      variant="outline-danger"
+                      size="lg"
+                      onClick={() => {
+                        alert("Not available in Beta v1");
+                      }}
+                    >
                       RUN AUTO FIX
                     </Button>
                   </Col>
