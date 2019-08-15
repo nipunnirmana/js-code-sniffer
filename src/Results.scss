@@ -1,6 +1,7 @@
 @import "./assets/styles/variables";
 @import "./assets/styles/common";
 .results {
+  text-align: left;
   .error-list li {
     list-style: none;
     font-size: $font-size-sm;

@@ -9,6 +9,10 @@ body,
   background-color: $primary-color;
 }
 
+.height-auto {
+  height: auto;
+}
+
 #root {
   font-family: $primary-font;
   color: $primary-text-color;

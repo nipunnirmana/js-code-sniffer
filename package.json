@@ -1,13 +1,13 @@
 {
   "author": {
-    "name": "Your Name",
-    "email": "your.email@domain.com",
-    "url": "https://your-website.com"
+    "name": "Nipun Nirmana Fernando",
+    "email": "nipunfernando@gmail.com",
+    "url": "https://nipunnirmana.com"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
-    "copyright": "Copyright © 2019 ${author}",
+    "appId": "com.nipunnirmana.js-sniffer",
+    "productName": "JS Sniffer",
+    "copyright": "Copyright © 2019 Nipun Nirmana Fernando",
     "mac": {
       "category": "public.app-category.utilities"
     },
@@ -31,7 +31,12 @@
     "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.0.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0"
   },
   "main": "public/electron.js",
   "homepage": "./",
@@ -66,12 +71,6 @@
     "concurrently": "^4.1.1",
     "electron": "^6.0.0",
     "electron-builder": "^21.2.0",
-    "eslint": "^6.1.0",
-    "eslint-config-standard": "^13.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
     "typescript": "^3.5.3",
     "wait-on": "^3.3.0"
   }
